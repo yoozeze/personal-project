@@ -1,0 +1,118 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'KyoboHandwriting2019';
+    font-size: 1.2rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+}
+
+header {
+    width: 30%;
+}
+
+main {
+    width: 100%;
+}
+
+main {
+    border: 1px solid #121212;
+    background-color: #121212;
+    border-radius: 10px;
+    margin: 10px 10px 10px 5px;
+}
+.menu_box {
+    border: 1px solid #121212;
+    background-color: #121212;
+    border-radius: 10px;
+    margin: 10px 5px 10px 10px;
+}
+
+.logo > a {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+}
+
+.logo > a > img,
+.home > a > img,
+.search > a > img,
+.library > img {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.spotify {
+    font-weight: 900;
+}
+
+.home > a,
+.search > a,
+.library {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+}
+
+.home_p,
+.search_p,
+.library_p {
+    margin-left: 20px;
+}
+
+.library_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #121212;
+    background-color: #121212;
+    border-radius: 10px;
+    margin: 10px 5px 10px 10px;
+}
+
+.puls_btn {
+    border: none;
+    background-color: transparent;
+    margin: 20px;
+}
+
+.puls_btn > img {
+    width: 15px;
+    height: 15px;
+}
+
+/* 메인 */
+.login_box {
+    display: flex;
+    padding: 10px 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: flex-end;
+    height: 64px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.login {
+    background-color: #8FBEDC;
+    border-radius: 20px;
+    margin-left: 40px;
+    padding: 20px;
+    height: 48px;
+    width: 100px;
+    line-height: 10px;
+    color: black;
+    text-align: center;
+}
