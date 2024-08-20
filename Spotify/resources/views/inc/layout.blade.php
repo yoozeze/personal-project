@@ -12,5 +12,7 @@
     @include('inc.header')
 
     @yield('main')
+
+    @include('inc.player')
 </body>
 </html>
