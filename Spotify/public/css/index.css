@@ -86,6 +86,16 @@ button {
     align-items: center;
 }
 
+.library {
+    background-color: transparent;
+    border: none;
+    color: #CCCCCC;
+}
+
+.library:hover {
+    color: white;
+}
+
 .home_p,
 .search_p,
 .library_p {
@@ -106,10 +116,23 @@ button {
     justify-content: space-between;
 }
 
+.plus_box {
+    margin: 10px;
+}
+
 .puls_btn {
     border: none;
     background-color: transparent;
-    margin: 20px;
+    padding: 10px;
+}
+
+.puls_btn:hover {
+    background-color: #1E1E1E;
+    border-radius: 100px;
+    width: 39px;
+    height: 40px;
+    padding: 7px 2px;
+    margin: 3px -2px;
 }
 
 .puls_btn > img {
@@ -144,6 +167,11 @@ button {
     background-color: #8FBEDC;
 }
 
+.playlist_btn:hover,
+.podcast_btn:hover {
+    transform: scale(1.04);
+}
+
 .linklist {
     margin: 130px 30px 5px 30px;
     display: flex;
@@ -171,6 +199,11 @@ button {
     height: 30px;
     width: 90px;
     color: #B3B3B3;
+}
+
+.translation:hover {
+    transform: scale(1.04);
+    border: 1px solid white;
 }
 
 .translation_box {
@@ -219,20 +252,23 @@ button {
 
 .player_box {
     display: grid;
-    grid-template-columns: 5fr 0.6fr;
-    padding: 10px 30px 10px 10px;
+    grid-template-columns: 5fr 0.63fr;
+    padding: 5px 30px 5px 15px;
+    align-items: center;
 }
 
 .player_p1 {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     font-size: 0.95rem;
+    padding: 2px 0;
 }
 
 .player_p2 {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     font-size: 0.95rem;
+    padding: 2px 0;
 }
 
 .player_btn {
@@ -240,10 +276,196 @@ button {
     grid-row: 1 / 3;
     border: none;
     border-radius: 30px;
-    padding: 10px;
+    padding: 5px 10px;
+    margin: 0 auto;
+    width: 95%;
+    height: 90%;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.player_btn:hover {
+    transform: scale(1.04);
 }
 
 .test {
     height: 50rem;
     background-color: #8FBEDC;
+}
+
+/* 푸터 */
+
+.footer_box {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin: 50px 30px;
+}
+
+.footer_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.company_box,
+.community_box,
+.useful_links_box,
+.payment_system_box {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.company_box > a,
+.community_box > a,
+.useful_links_box > a,
+.payment_system_box > a {
+    font-size: 0.9rem;
+    font-weight: 100;
+    color: #B3B3B3;
+    margin: 5px 0;
+}
+
+.company_box > a:hover,
+.community_box > a:hover,
+.useful_links_box > a:hover,
+.payment_system_box > a:hover {
+    color: white;
+    text-decoration: dashed;
+}
+
+.social_links_box {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 100px;
+}
+
+.social_links_box > a {
+    background-color: #292929;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    padding: 9px 13px;
+    margin: 8px;
+    cursor: default;
+}
+
+.social_links_box > a:hover {
+    background-color: #727272;
+}
+
+.social_links_box > a > img {
+    width: 15px;
+    height: 15px;
+}
+
+.footer_hr {
+    margin: 0 30px 40px ;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.company_title,
+.company_content {
+    color: #B3B3B3;
+    font-size: 0.8rem;
+    margin: 0 30px 20px;
+}
+
+.company_content {
+    margin-bottom: 100px;
+}
+
+/* 메인 */
+.popular_artist_box {
+    margin: 30px 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popular_artist_title {
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.all {
+    color: #B3B3B3;
+    font-size: 0.8rem;
+}
+
+.popular_artist_content {
+    margin: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.popular_artist {
+    margin: 0 12px;
+    display: grid;
+    grid-template-rows: 8fr 0.5fr 0.5fr;
+}
+
+.popular_artist_img1 {
+    background-image: url('/img/newjeans.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+    border-radius: 50%;
+}
+.popular_artist_img2 {
+    background-image: url('/img/aespa.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+    border-radius: 50%;
+}
+.popular_artist_img3 {
+    background-image: url('/img/iu.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+    border-radius: 50%;
+}
+.popular_artist_img4 {
+    background-image: url('/img/illit.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+    border-radius: 50%;
+}
+.popular_artist_img5 {
+    background-image: url('/img/kiss_of_life.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+    border-radius: 50%;
+}
+.popular_artist_img6 {
+    background-image: url('/img/taylor_swift.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+    border-radius: 50%;
+}
+
+.artist_name {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.artist {
+    color: #B3B3B3;
+    font-size: 0.8rem;
 }

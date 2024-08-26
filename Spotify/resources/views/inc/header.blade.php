@@ -21,13 +21,15 @@
     </div>
     <div class="library_box">
         <div class="library_title_box">
-            <div class="library">
+            <button class="library">
                 <img src="/img/book.png" alt="">
                 <p class="library_p">내 라이브러리</p>
-            </div>
-            <button class="puls_btn">
-                <img src="/img/plus.png" alt="">
             </button>
+            <div class="plus_box">
+                <button class="puls_btn">
+                    <img src="/img/plus.png" alt="">
+                </button>
+            </div>
         </div>
         <div class="playlist">
             <p class="playlist_p1">첫 번째 플레이리스트를 만드세요.</p>
