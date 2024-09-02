@@ -3,8 +3,8 @@
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: 'KyoboHandwriting2019';
-    font-size: 1.15rem;
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 }
 
 a {
@@ -29,7 +29,7 @@ main {
     background-color: #121212;
     border-radius: 10px;
     margin: 10px 10px 10px 5px;
-    max-height: 44.9rem;
+    max-height: 51.5rem;
     overflow-y: auto;
 }
 
@@ -82,7 +82,7 @@ button {
 .search > a,
 .library {
     display: flex;
-    margin: 15px 20px;
+    margin: 20px;
     align-items: center;
 }
 
@@ -100,6 +100,7 @@ button {
 .search_p,
 .library_p {
     margin-left: 20px;
+    font-size: 1rem;
 }
 
 /* 라이브러리 */
@@ -108,6 +109,7 @@ button {
     background-color: #121212;
     border-radius: 10px;
     margin: 10px 5px 10px 10px;
+    height: 93%;
 }
 
 .library_title_box {
@@ -132,7 +134,7 @@ button {
     width: 39px;
     height: 40px;
     padding: 7px 2px;
-    margin: 3px -2px;
+    margin: 0 -2px;
 }
 
 .puls_btn > img {
@@ -161,7 +163,7 @@ button {
     width: 160px;
     height: 35px;
     border-radius: 20px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 16px;
     border: none;
     background-color: #8FBEDC;
@@ -236,10 +238,16 @@ button {
     margin-left: 40px;
     padding: 20px;
     height: 48px;
-    width: 100px;
+    width: 130px;
     line-height: 10px;
     color: black;
     text-align: center;
+    font-weight: 900;
+}
+
+.login:hover,
+.regist:hover {
+    transform: scale(1.04);
 }
 
 /* 재생바 */
@@ -344,7 +352,7 @@ button {
     border-radius: 100px;
     width: 40px;
     height: 40px;
-    padding: 9px 13px;
+    padding: 10px 12.5px;
     margin: 8px;
     cursor: default;
 }
@@ -374,94 +382,66 @@ button {
     margin-bottom: 100px;
 }
 
-/* 메인 */
-.popular_artist_box {
+/* ---------------- 메인 - 인기 아티스트 --------------*/
+.popular_artist_box,
+.popular_album_box {
     margin: 30px 20px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.popular_artist_title {
+.popular_artist_title,
+.popula_album_title {
     font-size: 1.8rem;
     font-weight: 900;
 }
 
-.all {
+.all,
+.album_artist_name {
     color: #B3B3B3;
     font-size: 0.8rem;
 }
 
-.popular_artist_content {
+.popular_artist_content,
+.popular_album_content {
     margin: 0 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.popular_artist {
-    margin: 0 12px;
+.popular_artist,
+.popular_album {
+    margin: 0 3px;
+    padding: 10px;
     display: grid;
-    grid-template-rows: 8fr 0.5fr 0.5fr;
+    grid-template-rows: 6.5fr 0.5fr 0.5fr;
+    align-items: center;
+    position: relative;
 }
 
-.popular_artist_img1 {
-    background-image: url('/img/newjeans.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 90%;
-    border-radius: 50%;
+.popular_artist:hover,
+.popular_album:hover {
+    background-color: #1F1F1F;
+    border-radius: 10px;
+    cursor: pointer;
 }
-.popular_artist_img2 {
-    background-image: url('/img/aespa.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+
+.popular_artist_img {
     width: 100%;
-    height: 90%;
-    border-radius: 50%;
-}
-.popular_artist_img3 {
-    background-image: url('/img/iu.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 90%;
-    border-radius: 50%;
-}
-.popular_artist_img4 {
-    background-image: url('/img/illit.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 90%;
-    border-radius: 50%;
-}
-.popular_artist_img5 {
-    background-image: url('/img/kiss_of_life.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 90%;
-    border-radius: 50%;
-}
-.popular_artist_img6 {
-    background-image: url('/img/taylor_swift.webp');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 90%;
+    height: 100%;
     border-radius: 50%;
 }
 
-.artist_name {
+.popular_album_img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.artist_name,
+.album_name {
     margin: 5px 0;
-    font-size: 0.9rem;
     font-weight: 600;
 }
 
@@ -469,3 +449,22 @@ button {
     color: #B3B3B3;
     font-size: 0.8rem;
 }
+
+.popular_play_btn {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 165px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.popular_artist:hover .popular_play_btn,
+.popular_album:hover .popular_play_btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
