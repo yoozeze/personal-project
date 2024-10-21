@@ -13,32 +13,37 @@ public class Main {
         // String password = "php505";
         String username = System.getenv("DB_USERNAME");
         String password = System.getenv("DB_PASSWORD");
-        Scanner scanner = new Scanner(System.in);
+        // Scanner scanner = new Scanner(System.in);
 
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             Connection connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connected to the database!");
+            System.out.println("데이터베이스 연결완료");
 
-            System.out.println("Enter search keyword (emp_no): ");
-            String keyword = scanner.nextLine();
+            System.out.println("검색 키워드 입력: ");
+            String keyword = scanner.nextLine().trim();
+            // System.out.println("Entered emp_no: " + keyword);
 
-            String query = "SELECT * FROM employees WHERE first_name LIKE ?";
+            String query = "SELECT * FROM employees WHERE emp_no LIKE ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, "%" + keyword + "%");
+            preparedStatement.setString(1, keyword + "%");
+            // System.out.println("Executing query with emp_no = " + keyword);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // boolean hasResults = false;
             while (resultSet.next()) {
+                // hasResults = true;
                 int id = resultSet.getInt("emp_no");
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
                 String gender = resultSet.getString("gender");
                 String hireDate = resultSet.getString("hire_date");
-                System.out.println("emp_no: " + id + ", name: " + firstName + " " + lastName + ", gender: " + gender + ", hire_date: " + hireDate);
+                System.out.println("사원번호: " + id + ", 이름: " + firstName + " " + lastName + ", 성별: " + gender + ", 입사일: " + hireDate);
             }
 
             connection.close();
         } catch (Exception e) {
+            logger.severe("Error occurred: " + e.getMessage());
             e.printStackTrace();
         }
     }
