@@ -23,27 +23,32 @@ public class Main {
             String keyword = scanner.nextLine().trim();
             // System.out.println("Entered emp_no: " + keyword);
 
-            String query = "SELECT * FROM employees WHERE emp_no LIKE ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, keyword + "%");
-            // System.out.println("Executing query with emp_no = " + keyword);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            // boolean hasResults = false;
-            while (resultSet.next()) {
-                // hasResults = true;
-                int id = resultSet.getInt("emp_no");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
-                String gender = resultSet.getString("gender");
-                String hireDate = resultSet.getString("hire_date");
-                System.out.println("사원번호: " + id + ", 이름: " + firstName + " " + lastName + ", 성별: " + gender + ", 입사일: " + hireDate);
+            if (keyword.length() > 7 || !keyword.matches("\\d+")) {
+                throw new IllegalArgumentException("잘못된 입력 값입니다.");
             }
 
-            connection.close();
+            String query = "SELECT * FROM employees WHERE emp_no LIKE ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, keyword + "%");
+                // System.out.println("Executing query with emp_no = " + keyword);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    // boolean hasResults = false;
+                    while (resultSet.next()) {
+                        // hasResults = true;
+                        int id = resultSet.getInt("emp_no");
+                        String firstName = resultSet.getString("first_name");
+                        String lastName = resultSet.getString("last_name");
+                        String gender = resultSet.getString("gender");
+                        String hireDate = resultSet.getString("hire_date");
+                        System.out.println("사원번호: " + id + ", 이름: " + firstName + " " + lastName + ", 성별: " + gender + ", 입사일: " + hireDate);
+                    }
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            logger.warning("입력 값 오류: " + e.getMessage());
         } catch (Exception e) {
-            logger.severe("Error occurred: " + e.getMessage());
+            logger.severe("요청을 처리하는 동안 오류가 발생");
             e.printStackTrace();
         }
     }
