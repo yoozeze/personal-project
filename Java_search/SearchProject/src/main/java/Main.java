@@ -1,3 +1,4 @@
+package main.java;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,11 +10,8 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
     public static void main(String[] args){
         String url = "jdbc:mariadb://localhost:3306/employees";
-        // String username = "root";
-        // String password = "php505";
         String username = System.getenv("DB_USERNAME");
         String password = System.getenv("DB_PASSWORD");
-        // Scanner scanner = new Scanner(System.in);
 
         try (Scanner scanner = new Scanner(System.in)) {
             Connection connection = DriverManager.getConnection(url, username, password);
@@ -21,7 +19,6 @@ public class Main {
 
             System.out.println("검색 키워드 입력: ");
             String keyword = scanner.nextLine().trim();
-            // System.out.println("Entered emp_no: " + keyword);
 
             if (keyword.length() > 7 || !keyword.matches("\\d+")) {
                 throw new IllegalArgumentException("잘못된 입력 값입니다.");
@@ -30,12 +27,9 @@ public class Main {
             String query = "SELECT * FROM employees WHERE emp_no LIKE ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, keyword + "%");
-                // System.out.println("Executing query with emp_no = " + keyword);
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    // boolean hasResults = false;
                     while (resultSet.next()) {
-                        // hasResults = true;
                         int id = resultSet.getInt("emp_no");
                         String firstName = resultSet.getString("first_name");
                         String lastName = resultSet.getString("last_name");
