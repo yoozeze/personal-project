@@ -1,0 +1,109 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": 0,
+    "scrollLeft": 0,
+    "zoomLevel": 1,
+    "show": 431,
+    "database": 4,
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "mNEVo19PjQtHlgbk6jQvx"
+    ],
+    "relationshipIds": [],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "mNEVo19PjQtHlgbk6jQvx": {
+        "id": "mNEVo19PjQtHlgbk6jQvx",
+        "name": "user",
+        "comment": "",
+        "columnIds": [
+          "_kNkuws3f1n_qm_NW-knw"
+        ],
+        "seqColumnIds": [
+          "_kNkuws3f1n_qm_NW-knw"
+        ],
+        "ui": {
+          "x": 200,
+          "y": 100,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1729673809016,
+          "createAt": 1729673783515
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "_kNkuws3f1n_qm_NW-knw": {
+        "id": "_kNkuws3f1n_qm_NW-knw",
+        "tableId": "mNEVo19PjQtHlgbk6jQvx",
+        "name": "",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1729673809016,
+          "createAt": 1729673809016
+        }
+      }
+    },
+    "relationshipEntities": {},
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  },
+  "lww": {
+    "mNEVo19PjQtHlgbk6jQvx": [
+      "tableEntities",
+      1729673783513,
+      -1,
+      {
+        "name": 1729673799503
+      }
+    ],
+    "_kNkuws3f1n_qm_NW-knw": [
+      "tableColumnEntities",
+      1729673809015,
+      -1,
+      {}
+    ]
+  }
+}
