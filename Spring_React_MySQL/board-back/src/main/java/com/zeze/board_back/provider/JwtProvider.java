@@ -1,4 +1,4 @@
-package main.java.com.zeze.board_back.provider;
+package com.zeze.board_back.provider;
 
 import java.util.Date;
 import java.time.temporal.ChronoUnit;
@@ -8,19 +8,21 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JwtProvider {
-    
-    private String secretKey = "S3cretK3y";
+
+    @Value("${secret-key}")
+    private String secretKey;
 
     public String create(String email) {
 
         Date expiredDate = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
 
-        String jwt = Jwts.builer()
-            .signWith(SignatureAlgorithm.ES256, secretKey)
+        String jwt = Jwts.builder()
+            .signWith(SignatureAlgorithm.HS256, secretKey)
             .setSubject(email).setIssuedAt(new Date()).setExpiration(expiredDate)
             .compact();
 
