@@ -7,14 +7,14 @@ interface Props {
     commentListItem: CommentListItem;
 }
 
-//          component: Comment List Item 컴포넌트
+//          component: Comment List Item 컴포넌트          //
 
 export default function CommentItem({ commentListItem }: Props) {
 
-    //          properties
+    //          state: properties          //
     const { nickname, profileImage, writeDatetime, content } = commentListItem;
 
-    //          render: Comment List Item 컴포넌트 렌더링
+    //          render: Comment List Item 컴포넌트 렌더링          //
     return (
         <div className='comment-list-item'>
             <div className="comment-list-item-top">

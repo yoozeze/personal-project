@@ -1,4 +1,5 @@
 import { FavoriteListItem } from "types/interface";
+import profileImage from 'assets/image/01_모코코콘1_20_엣큥.png';
 
 const favoriteListMock: FavoriteListItem[] = [
     {
@@ -9,7 +10,7 @@ const favoriteListMock: FavoriteListItem[] = [
     {
         "emile": "email@email.com",
         "nickname": "안녕하세요모코코",
-        "profileImage": "/images/01_모코코콘1_20_엣큥.png"
+        "profileImage": profileImage,
     },
     {
         "emile": "email@email.com",
@@ -24,7 +25,7 @@ const favoriteListMock: FavoriteListItem[] = [
     {
         "emile": "email@email.com",
         "nickname": "안녕하세요모코코",
-        "profileImage": "/images/01_모코코콘1_20_엣큥.png"
+        "profileImage": profileImage,
     },
     {
         "emile": "email@email.com",
