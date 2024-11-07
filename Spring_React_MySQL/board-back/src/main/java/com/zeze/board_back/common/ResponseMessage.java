@@ -14,7 +14,7 @@ public interface ResponseMessage {
     String NOT_EXISTED_BOARD = "This board does not exist.";
  
     // HTTP Status 401
-    String SING_IN_FAIL = "Login information mismatch.";
+    String SIGN_IN_FAIL = "Login information mismatch.";
     String AUTHORIZATION_FAIL = "Authorization Failed.";
  
     // HTTP Status 403 (권한 없음)
