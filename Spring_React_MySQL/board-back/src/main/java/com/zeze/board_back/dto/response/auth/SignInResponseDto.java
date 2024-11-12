@@ -10,7 +10,6 @@ import com.zeze.board_back.dto.response.ResponseDto;
 import lombok.Getter;
 
 @Getter
-
 public class SignInResponseDto extends ResponseDto {
     
     private String token;
