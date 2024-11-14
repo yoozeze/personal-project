@@ -142,7 +142,16 @@ export default function Authenticaiton() {
 
         //          render: sign up card 컴포넌트 렌더링          //
         return (
-            <div className='auth-card'></div>
+            <div className='auth-card'>
+                <div className="auth-card-box">
+                    <div className="auth-card-top">
+                        <div className="auth-card-title-box">
+                            
+                        </div>
+                    </div>
+                    <div className="auth-card-bottom"></div>
+                </div>
+            </div>
         );
     };
 
