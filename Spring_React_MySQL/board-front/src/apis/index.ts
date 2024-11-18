@@ -28,3 +28,20 @@ export const signInRequest = async (requestBody: SignInRequestDto) => {
 export const signUpRequest = async (requestBody: SignUpRequestDto) => {
 
 }
+// export const signInRequest = async (requestBody: SignInRequestDto): Promise<SignInResponseDto | ResponseDto | null> => {
+//     try {
+//         // 성공적으로 응답을 받은 경우
+//         const response = await axios.post(SIGN_IN_URL(), requestBody);
+//         const responseBody: SignInResponseDto = response.data;
+//         return responseBody;
+//     } catch (error: any) {
+//         // 네트워크 오류 또는 서버 오류 처리
+//         if (error.response && error.response.data) {
+//             const responseBody: ResponseDto = error.response.data;
+//             return responseBody;
+//         } else {
+//             console.error('Unexpected Error:', error);
+//             return null; // 예기치 못한 오류
+//         }
+//     }
+// };
