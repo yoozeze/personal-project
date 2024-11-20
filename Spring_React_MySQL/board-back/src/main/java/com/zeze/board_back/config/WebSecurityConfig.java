@@ -58,19 +58,32 @@ public class WebSecurityConfig {
         return httpSecurity.build();
     }
 
+    // @Bean
+    // protected CorsConfigurationSource corsConfigrationSource() {
+
+    //     CorsConfiguration configuration = new CorsConfiguration();
+    //     configuration.addAllowedOrigin("*");
+    //     configuration.addAllowedMethod("*");
+    //     configuration.addExposedHeader("*");
+
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     source.registerCorsConfiguration("/**", configuration);
+
+    //     return source;
+
+    // }
     @Bean
     protected CorsConfigurationSource corsConfigrationSource() {
-
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("*");
-        configuration.addExposedHeader("*");
+        configuration.addAllowedOrigin("http://localhost:3000");  // React 앱 주소를 명시적으로 설정
+        configuration.addAllowedMethod("*");  // 모든 HTTP 메서드 허용
+        configuration.addAllowedHeader("*");  // 모든 헤더 허용
+        configuration.addExposedHeader("Authorization");  // Authorization 헤더를 응답으로 노출
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
-
     }
 }
 

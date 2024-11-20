@@ -2,6 +2,6 @@ import { ResponseCode } from "types/enum";
 
 
 export default interface ResponseDto {
-    code: ResponseCode;
+    code?: ResponseCode;
     message: string;
 }
