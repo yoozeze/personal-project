@@ -11,7 +11,6 @@ import { ResponseDto } from 'apis/response';
 
 //          component: 헤더 레이아웃           //
 export default function Header() {
-
     
     //          state: 로그인 유저 상태          //
     const { loginUser, setLoginUser, resetLoginUser } = useLoginUserStore();
@@ -67,7 +66,7 @@ export default function Header() {
         const onSearchWordChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
             const value = event.target.value;
             setWord(value);
-        }
+        };
 
         //          event handler: 검색어 키 이벤트 처리 함수          //
         const onSearchWordKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -94,22 +93,21 @@ export default function Header() {
         }, [searchWord]);
 
         if (!status)
-
         //          render: 검색 버튼 컴포넌트 렌더링 (클릭 false 상태)           //
         return (
-            <div className='icon-button' onClick={onSearchButtonClickHandler}>
-                <div className="icon search-light-icon"></div>
-            </div>
+        <div className='icon-button' onClick={onSearchButtonClickHandler}>
+            <div className="icon search-light-icon"></div>
+        </div>
         );
 
         //          render: 검색 버튼 컴포넌트 렌더링 (클릭 true 상태)           //
         return (
-            <div className="header-search-input-box">
-                <input className='header-search-input' type='text' placeholder='검색어를 입력해주세요.' value={word} onChange={onSearchWordChangeHandler} onKeyDown={onSearchWordKeyDownHandler} />
-                <div ref={searchButtonRef} className='icon-button' onClick={onSearchButtonClickHandler}>
-                    <div className="icon search-light-icon"></div>
-                </div>
+        <div className="header-search-input-box">
+            <input className='header-search-input' type='text' placeholder='검색어를 입력해주세요.' value={word} onChange={onSearchWordChangeHandler} onKeyDown={onSearchWordKeyDownHandler} />
+            <div ref={searchButtonRef} className='icon-button' onClick={onSearchButtonClickHandler}>
+                <div className="icon search-light-icon"></div>
             </div>
+        </div>
         );
     };
 
@@ -139,16 +137,16 @@ export default function Header() {
         };
 
         //          render: 로그아웃 버튼 컴포넌트 렌더링           //
-        if(isLogin && userEmail === loginUser?.email)
+        if(isLogin && userEmail === loginUser?.email) 
         return <div className='white-button' onClick={onSignOutButtonClickHandler}>{'로그아웃'}</div>;
 
         //          render: 마이페이지 버튼 컴포넌트 렌더링           //
-        if(isLogin)
+        if(isLogin) 
         return <div className='white-button' onClick={onMyPageButtonClickHandler}>{'마이페이지'}</div>;
 
         //          render: 로그인 버튼 컴포넌트 렌더링           //
         return <div className='black-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>;
-    }
+    };
 
     //          component: 업로드 버튼 컴포넌트          //
     const UploadButton = () => {
@@ -198,7 +196,7 @@ export default function Header() {
 
         //          render: 업로드 불가 버튼 컴포넌트 렌더링           //
         return <div className='disable-button'>{'업로드'}</div>;
-    }
+    };
 
     //          effect: path가 변경될 때 마다 실행될 함수          //
     useEffect(() => {
@@ -221,7 +219,7 @@ export default function Header() {
     //          effect: 로그인 유저가 변경될 때 마다 실행될 함수          //
     useEffect (()=>{
         setLogin(loginUser !== null);
-    },[loginUser])
+    }, [loginUser])
 
 
     //          render: 헤더 레이아웃 렌더링           //

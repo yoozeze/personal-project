@@ -95,7 +95,7 @@ class FailedAuthenticationEntryPoint implements AuthenticationEntryPoint {
         
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().write("{ \"code\": \"AF\", \"massage\": \" Authorization Failed.\" }");
+        response.getWriter().write("{ \"code\": \"AF\", \"message\": \" Authorization Failed.\" }");
     }
     
 }

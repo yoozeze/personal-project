@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 
 //          component: 인증 화면 컴포넌트          //
-export default function Authenticaiton() {
+export default function Authentication() {
 
     //          state: 화면 상태          //
     const [view, setView] = useState<'sign-in' | 'sign-up'>('sign-in');

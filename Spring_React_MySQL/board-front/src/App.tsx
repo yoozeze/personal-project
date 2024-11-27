@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Main from 'views/Main';
-import Authenticaiton from 'views/Authentication';
+import Authentication from 'views/Authentication';
 import Search from 'views/Search';
 import UserP from 'views/User';
 import BoardDetail from 'views/Board/Detail';
@@ -85,8 +85,8 @@ function App() {
             <Routes>
                 <Route element={<Container />}>
                     <Route path={MAIN_PATH()} element={<Main />} />
-                    <Route path={AUTH_PATH()} element={< Authenticaiton />} />
-                    <Route path={USER_PATH(':userEamil')} element={< UserP />} />
+                    <Route path={AUTH_PATH()} element={< Authentication />} />
+                    <Route path={USER_PATH(':userEmail')} element={< UserP />} />
                     <Route path={SEARCH_PATH(':searchWord')} element={< Search />} />
                     <Route path={BOARD_PATH()}>
                         <Route path={BOARD_WRITE_PATH()} element={< BoardWrite />} />
