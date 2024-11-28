@@ -7,6 +7,8 @@ import com.zeze.board_back.entity.FavoriteEntity;
 import com.zeze.board_back.entity.primaryKey.FavoritePk;
 
 @Repository
-public interface FavoritRepository extends JpaRepository<FavoriteEntity, FavoritePk>{
+public interface FavoriteRepository extends JpaRepository<FavoriteEntity, FavoritePk>{
     
+    FavoriteEntity findByBoardNumberAndUserEmail(Integer boardNumber, String userEmail);
+
 }
