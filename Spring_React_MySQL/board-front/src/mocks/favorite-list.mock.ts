@@ -10,11 +10,11 @@ const favoriteListMock: FavoriteListItem[] = [
     {
         "emile": "email@email.com",
         "nickname": "안녕하세요모코코",
-        "profileImage": profileImage,
+        "profileImage": profileImage
     },
     {
         "emile": "email@email.com",
-        "nickname": "안녕하세요모코코",
+        "nickname": "안녕하세요모코코입니다안녕하세요모코코입니다",
         "profileImage": null
     },
     {
@@ -25,12 +25,22 @@ const favoriteListMock: FavoriteListItem[] = [
     {
         "emile": "email@email.com",
         "nickname": "안녕하세요모코코",
-        "profileImage": profileImage,
+        "profileImage": profileImage
     },
     {
         "emile": "email@email.com",
         "nickname": "안녕하세요모코코",
         "profileImage": null
+    },
+    {
+        "emile": "email@email.com",
+        "nickname": "안녕하세요모코코",
+        "profileImage": profileImage
+    },
+    {
+        "emile": "email@email.com",
+        "nickname": "안녕하세요모코코",
+        "profileImage": profileImage
     },
 ]
 
