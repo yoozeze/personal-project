@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.zeze.board_back.entity.CommentEntity;
 import com.zeze.board_back.repository.resultSet.GetCommentListResultSet;
 
+import jakarta.transaction.Transactional;
+
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer>{
     
@@ -27,5 +29,9 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
         nativeQuery = true
     )
     List<GetCommentListResultSet> getCommentList(Integer boardNumber);
+
+    // 게시물 삭제
+    @Transactional
+    void deleteByBoardNumber(Integer boardNumber);
 
 }

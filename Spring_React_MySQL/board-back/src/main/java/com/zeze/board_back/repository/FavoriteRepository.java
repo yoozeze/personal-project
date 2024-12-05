@@ -10,6 +10,8 @@ import com.zeze.board_back.entity.FavoriteEntity;
 import com.zeze.board_back.entity.primaryKey.FavoritePk;
 import com.zeze.board_back.repository.resultSet.GetFavoriteListResultSet;
 
+import jakarta.transaction.Transactional;
+
 @Repository
 public interface FavoriteRepository extends JpaRepository<FavoriteEntity, FavoritePk>{
     
@@ -29,5 +31,9 @@ public interface FavoriteRepository extends JpaRepository<FavoriteEntity, Favori
     )
 
     List<GetFavoriteListResultSet> getFavoriteList(Integer boardNumber);
+
+    // 게시물 삭제
+    @Transactional
+    void deleteByBoardNumber(Integer boardNumber);
 
 }

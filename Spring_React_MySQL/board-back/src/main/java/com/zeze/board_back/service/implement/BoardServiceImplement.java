@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.zeze.board_back.dto.request.board.PostBoardRequsetDto;
 import com.zeze.board_back.dto.request.board.PostCommentRequestDto;
 import com.zeze.board_back.dto.response.ResponseDto;
+import com.zeze.board_back.dto.response.board.DeleteBoardResponseDto;
 import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
 import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
+import com.zeze.board_back.dto.response.board.IncreaseViewCountResponseDto;
 import com.zeze.board_back.dto.response.board.PostBoardResponseDto;
 import com.zeze.board_back.dto.response.board.PostCommentResponseDto;
 import com.zeze.board_back.dto.response.board.PutFavoriteResponseDto;
@@ -39,8 +41,8 @@ public class BoardServiceImplement implements BoardService{
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
-    private final FavoriteRepository favoriteRepository;
     private final CommentRepository commentRepository;
+    private final FavoriteRepository favoriteRepository;
     
     // 게시물 조회
     @Override
@@ -52,14 +54,9 @@ public class BoardServiceImplement implements BoardService{
         try {
             
             resultSet = boardRepository.getBoard(boardNumber);
-            if (resultSet == null) return GetBoardRespnoseDto.notExistBoard();
+            if (resultSet == null) return GetBoardRespnoseDto.noExistBoard();
 
             imageEntities = imageRepository.findByBoardNumber(boardNumber);
-
-            // 조회수 증가
-            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
-            boardEntity.increaseViewCount();
-            boardRepository.save(boardEntity);
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -121,7 +118,7 @@ public class BoardServiceImplement implements BoardService{
         try {
 
             boolean existedEmail = userRepository.existsByEmail(email);
-            if (!existedEmail) return PostBoardResponseDto.notExistUser();
+            if (!existedEmail) return PostBoardResponseDto.noExistUser();
             
             BoardEntity boardEntity = new BoardEntity(dto, email);
             boardRepository.save(boardEntity);
@@ -209,6 +206,59 @@ public class BoardServiceImplement implements BoardService{
         }
 
         return PutFavoriteResponseDto.success();
+
+    }
+
+    @Override
+    public ResponseEntity<? super IncreaseViewCountResponseDto> increaseViewCount(Integer boardNumber) {
+        
+        try {
+
+            // 조회수 증가
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if (boardEntity == null) return IncreaseViewCountResponseDto.notExistBoard();
+            boardEntity.increaseViewCount();
+            boardRepository.save(boardEntity);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+    
+        return IncreaseViewCountResponseDto.success();
+
+    }
+
+    @Override
+    public ResponseEntity<? super DeleteBoardResponseDto> deleteBoard(Integer boardNumber, String email) {
+    
+        try {
+
+            // 유저 존재 확인
+            boolean existedUser = userRepository.existsByEmail(email);
+            if (!existedUser) return DeleteBoardResponseDto.noExistUser();
+
+            // 게시물 존재 확인
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if (boardEntity == null) return DeleteBoardResponseDto.noExistBoard();
+
+            // 권한 확인
+            String writerEmail = boardEntity.getWriterEmail();
+            boolean isWriter = writerEmail.equals(email);
+            if (!isWriter) return DeleteBoardResponseDto.noPermission();
+
+            imageRepository.deleteByBoardNumber(boardNumber);
+            commentRepository.deleteByBoardNumber(boardNumber);
+            favoriteRepository.deleteByBoardNumber(boardNumber);
+            
+            boardRepository.delete(boardEntity);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return DeleteBoardResponseDto.success();
 
     }
 
