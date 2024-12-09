@@ -10,15 +10,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zeze.board_back.dto.request.board.PostBoardRequsetDto;
+import com.zeze.board_back.dto.request.board.PatchBoardRequestDto;
+import com.zeze.board_back.dto.request.board.PostBoardRequestDto;
 import com.zeze.board_back.dto.request.board.PostCommentRequestDto;
 import com.zeze.board_back.dto.response.board.DeleteBoardResponseDto;
 import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
 import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
+import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
+import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
 import com.zeze.board_back.dto.response.board.IncreaseViewCountResponseDto;
+import com.zeze.board_back.dto.response.board.PatchBoardResponseDto;
 import com.zeze.board_back.dto.response.board.PostBoardResponseDto;
 import com.zeze.board_back.dto.response.board.PostCommentResponseDto;
 import com.zeze.board_back.dto.response.board.PutFavoriteResponseDto;
@@ -71,10 +76,24 @@ public class BoardController {
         return response;
     }
 
+    // 최신 게시글 리스트
+    @GetMapping("/latest-list")
+    public ResponseEntity<? super GetLatestBoardListResponseDto> getLatestBoardList() {
+        ResponseEntity<? super GetLatestBoardListResponseDto> response = boardService.getLatestBoardList();
+        return response;
+    }
+
+    // 주간 TOP3 리스트
+    @GetMapping("/top-3")
+    public ResponseEntity<? super GetTop3BoardListResponseDto> getTop3BoardList() {
+        ResponseEntity<? super GetTop3BoardListResponseDto> response = boardService.getTop3BoardList();
+        return response;
+    }
+
     // 게시물 작성
     @PostMapping("")
     public ResponseEntity<? super PostBoardResponseDto> postBoard(
-        @RequestBody @Valid PostBoardRequsetDto requestBody,
+        @RequestBody @Valid PostBoardRequestDto requestBody,
         @AuthenticationPrincipal String email
     ) {
         ResponseEntity<? super PostBoardResponseDto> response = boardService.postBoard(requestBody, email);
@@ -99,6 +118,17 @@ public class BoardController {
         @AuthenticationPrincipal String email
     ) {
         ResponseEntity<? super PutFavoriteResponseDto> response = boardService.putFavorite(boardNumber, email);
+        return response;
+    }
+
+    // 게시물 수정
+    @PatchMapping("/{boardNumber}")
+    public ResponseEntity<? super PatchBoardResponseDto> patchBoard(
+        @RequestBody @Valid PatchBoardRequestDto requestBody,
+        @PathVariable("boardNumber") Integer boardNumber,
+        @AuthenticationPrincipal String email
+    ){
+        ResponseEntity<? super PatchBoardResponseDto> response = boardService.patchBoard(requestBody, boardNumber, email);
         return response;
     }
 

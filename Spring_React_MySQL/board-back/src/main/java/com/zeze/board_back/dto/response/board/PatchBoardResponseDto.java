@@ -10,15 +10,14 @@ import com.zeze.board_back.dto.response.ResponseDto;
 import lombok.Getter;
 
 @Getter
-
-public class PutFavoriteResponseDto extends ResponseDto{
+public class PatchBoardResponseDto extends ResponseDto{
     
-    private PutFavoriteResponseDto() {
+    private PatchBoardResponseDto() {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
     }
 
-    public static ResponseEntity<PutFavoriteResponseDto> success() {
-        PutFavoriteResponseDto result = new PutFavoriteResponseDto();
+    public static ResponseEntity<PatchBoardResponseDto> success() {
+        PatchBoardResponseDto result = new PatchBoardResponseDto();
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
@@ -31,7 +30,13 @@ public class PutFavoriteResponseDto extends ResponseDto{
     // 유저 존재 확인
     public static ResponseEntity<ResponseDto> noExistUser() {
         ResponseDto result = new ResponseDto(ResponseCode.NOT_EXISTED_USER, ResponseMessage.NOT_EXISTED_USER);
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+    }
+
+    // 권한 존재 확인
+    public static ResponseEntity<ResponseDto> noPermission() {
+        ResponseDto result = new ResponseDto(ResponseCode.NO_PERMISSION, ResponseMessage.NO_PERMISSION);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(result);
     }
 
 }

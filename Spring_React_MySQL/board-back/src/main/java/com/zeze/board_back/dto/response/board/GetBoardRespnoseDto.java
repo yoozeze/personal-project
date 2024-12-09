@@ -51,6 +51,7 @@ public class GetBoardRespnoseDto extends ResponseDto{
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    // 게시물 존재 확인
     public static ResponseEntity<ResponseDto> noExistBoard() {
         ResponseDto result = new ResponseDto(ResponseCode.NOT_EXISTED_BOARD, ResponseMessage.NOT_EXISTED_BOARD);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);

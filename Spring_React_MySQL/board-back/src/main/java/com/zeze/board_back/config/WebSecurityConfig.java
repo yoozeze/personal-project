@@ -38,7 +38,7 @@ public class WebSecurityConfig {
         httpSecurity
 
             .cors(cors -> cors
-                .configurationSource(corsConfigrationSource())
+                .configurationSource(corsConfigurationSource())
             )
             .csrf(CsrfConfigurer::disable)
             .httpBasic(HttpBasicConfigurer::disable)
@@ -59,7 +59,7 @@ public class WebSecurityConfig {
     }
 
     // @Bean
-    // protected CorsConfigurationSource corsConfigrationSource() {
+    // protected CorsConfigurationSource corsConfigurationSource() {
 
     //     CorsConfiguration configuration = new CorsConfiguration();
     //     configuration.addAllowedOrigin("*");
@@ -73,7 +73,7 @@ public class WebSecurityConfig {
 
     // }
     @Bean
-    protected CorsConfigurationSource corsConfigrationSource() {
+    protected CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("http://localhost:3000");  // React 앱 주소를 명시적으로 설정
         configuration.addAllowedMethod("*");  // 모든 HTTP 메서드 허용

@@ -18,6 +18,7 @@ public class IncreaseViewCountResponseDto extends ResponseDto{
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    // 게시물 존재 확인
     public static ResponseEntity<ResponseDto> notExistBoard() {
         ResponseDto result = new ResponseDto(ResponseCode.NOT_EXISTED_BOARD, ResponseMessage.NOT_EXISTED_BOARD);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
