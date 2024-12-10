@@ -16,4 +16,6 @@ public interface BoardListViewRepository extends JpaRepository<BoardListViewEnti
     // 주간 TOP3 게시물 리스트
     List<BoardListViewEntity> findTop3ByWriteDatetimeGreaterThanOrderByFavoriteCountDescCommentCountDescViewCountDescWriteDatetimeDesc(String writeDatetime);
 
+    // 검색 리스트 게시물
+    List<BoardListViewEntity> findByTitleContainsOrContentContainsOrderByWriteDatetimeDesc(String title, String content);
 }

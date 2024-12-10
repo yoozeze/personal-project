@@ -4,7 +4,8 @@ import { SignInResponseDto, SignUpResponseDto } from "./response/auth";
 import { ResponseDto } from "./response";
 import { GetSignInUserResponseDto } from "./response/user";
 import { PatchBoardRequestDto, PostBoardRequestDto, PostCommentRequestDto } from "./request/board";
-import { DeleteBoardResponseDto, GetBoardResponseDto, GetCommentListResponseDto, GetFavoriteListResponseDto, IncreaseViewCountResponseDto, PatchBoardResponseDto, PostBoardResponseDto, PostCommentResponseDto, PutFavoriteResponseDto } from "./response/board";
+import { DeleteBoardResponseDto, GetBoardResponseDto, GetCommentListResponseDto, GetFavoriteListResponseDto, GetLatestBoardListResponseDto, GetTop3BoardListResponseDto, IncreaseViewCountResponseDto, PatchBoardResponseDto, PostBoardResponseDto, PostCommentResponseDto, PutFavoriteResponseDto } from "./response/board";
+import { GetPopularListResponseDto } from "./response/search";
 
 const DOMAIN = 'http://localhost:4000';
 
@@ -49,6 +50,8 @@ export const signUpRequest = async (requestBody: SignUpRequestDto) => {
 }
 
 const GET_BOARD_URL = (boardNumber: number | string) => `${API_DOMAIN}/board/${boardNumber}`;
+const GET_LATEST_BOARD_LIST_URL = () => `${API_DOMAIN}/board/latest-list`;
+const GET_TOP_3_BOARD_LIST_URL = () => `${API_DOMAIN}/board/top-3`;
 const INCREASE_VIEW_COUNT_URL = (boardNumber: number | string) => `${API_DOMAIN}/board/${boardNumber}/increase-view-count`;
 const GET_FAVORITE_LIST_URL = (boardNumber: number | string) => `${API_DOMAIN}/board/${boardNumber}/favorite-list`;
 const GET_COMMENT_LIST_URL = (boardNumber: number | string) => `${API_DOMAIN}/board/${boardNumber}/comment-list`;
@@ -71,7 +74,37 @@ export const getBoardRequest = async (boardNumber: number | string) => {
             return responseBody;
         });
     return result;
-}
+};
+
+// 최신 게시물 조회
+export const getLatestBoardListRequest = async () => {
+    const result = await axios.get(GET_LATEST_BOARD_LIST_URL())
+        .then(response => {
+            const responseBody: GetLatestBoardListResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if(!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+};
+
+// 주간 TOP3 게시물 조회
+export const getTop3BoardListRequest = async () => {
+    const result = await axios.get(GET_TOP_3_BOARD_LIST_URL())
+        .then(response => {
+            const responseBody: GetTop3BoardListResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if(!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+};
 
 // 조회수 1씩 증가
 export const increaseViewCountRequest = async (boardNumber: number | string) => {
@@ -86,7 +119,7 @@ export const increaseViewCountRequest = async (boardNumber: number | string) => 
             return responseBody;
         });
     return result;
-}
+};
 
 // 특정 게시물의 좋아요 리스트 조회
 export const getFavoriteListRequest = async (boardNumber: number | string) => {
@@ -101,7 +134,7 @@ export const getFavoriteListRequest = async (boardNumber: number | string) => {
             return responseBody;
         });
     return result;
-}
+};
 
 // 특정 게시물의 댓글 리스트 조회
 export const getCommentListRequest = async (boardNumber: number | string) => {
@@ -116,7 +149,7 @@ export const getCommentListRequest = async (boardNumber: number | string) => {
             return responseBody;
         });
     return result;
-}
+};
 
 // 게시물 작성
 export const postBoardRequest = async (requestBody: PostBoardRequestDto, accessToken: string) => {
@@ -131,7 +164,7 @@ export const postBoardRequest = async (requestBody: PostBoardRequestDto, accessT
             return responseBody;
         })
     return result;
-}
+};
 
 // 댓글 작성
 export const postCommentRequest = async (boardNumber: number | string, requestBody: PostCommentRequestDto, accessToken: string) => {
@@ -146,7 +179,7 @@ export const postCommentRequest = async (boardNumber: number | string, requestBo
             return responseBody;
         });
     return result;
-}
+};
 
 // 게시물 수정
 export const patchBoardRequest = async (boardNumber: number | string, requestBody: PatchBoardRequestDto, accessToken: string) => {
@@ -161,7 +194,7 @@ export const patchBoardRequest = async (boardNumber: number | string, requestBod
             return responseBody;
         });
     return result;
-}
+};
 
 // 좋아요 기능
 export const putFavoriteRequest = async (boardNumber: number | string, accessToken: string) => {
@@ -176,7 +209,7 @@ export const putFavoriteRequest = async (boardNumber: number | string, accessTok
             return responseBody;
         });
     return result;
-}
+};
 
 // 게시물 삭제
 export const deleteBoardRequest = async (boardNumber: number | string, accessToken: string) => {
@@ -191,7 +224,24 @@ export const deleteBoardRequest = async (boardNumber: number | string, accessTok
             return responseBody;
         });
     return result;
-}
+};
+
+const GET_POPULAR_LIST_URL = () => `${API_DOMAIN}/search/popular-list`;
+
+// 인기 검색어 조회
+export const getPopularListRequest = async () => {
+    const result = await axios.get(GET_POPULAR_LIST_URL())
+        .then(response => {
+            const responseBody: GetPopularListResponseDto = response.data;
+            return responseBody;
+        })
+        .catch (error => {
+            if (!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+};
 
 const GET_SIGN_IN_USER_URL = () => `${API_DOMAIN}/user`;
 
@@ -208,7 +258,7 @@ export const getSignInUserRequest = async (accessToken: string) => {
             return responseBody;
         });
     return result;
-}
+};
 
 const FILE_DOMAIN = `${DOMAIN}/file`;
 const FILE_UPLOAD_URL = () => `${FILE_DOMAIN}/upload`;
@@ -225,4 +275,4 @@ export const fileUploadRequest = async (data: FormData) => {
             return null;
         });
     return result;
-}
+};

@@ -19,6 +19,7 @@ import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
 import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
 import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
+import com.zeze.board_back.dto.response.board.GetSearchboardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
 import com.zeze.board_back.dto.response.board.IncreaseViewCountResponseDto;
 import com.zeze.board_back.dto.response.board.PatchBoardResponseDto;
@@ -30,11 +31,13 @@ import com.zeze.board_back.entity.BoardListViewEntity;
 import com.zeze.board_back.entity.CommentEntity;
 import com.zeze.board_back.entity.FavoriteEntity;
 import com.zeze.board_back.entity.ImageEntity;
+import com.zeze.board_back.entity.SearchLogEntity;
 import com.zeze.board_back.repository.BoardListViewRepository;
 import com.zeze.board_back.repository.BoardRepository;
 import com.zeze.board_back.repository.CommentRepository;
 import com.zeze.board_back.repository.FavoriteRepository;
 import com.zeze.board_back.repository.ImageRepository;
+import com.zeze.board_back.repository.SearchLogRepository;
 import com.zeze.board_back.repository.UserRepository;
 import com.zeze.board_back.repository.resultSet.GetBoardResultSet;
 import com.zeze.board_back.repository.resultSet.GetCommentListResultSet;
@@ -53,6 +56,7 @@ public class BoardServiceImplement implements BoardService{
     private final ImageRepository imageRepository;
     private final CommentRepository commentRepository;
     private final FavoriteRepository favoriteRepository;
+    private final SearchLogRepository searchLogRepository;
     private final BoardListViewRepository boardListViewRepository;
     
     // 게시물 조회
@@ -161,6 +165,36 @@ public class BoardServiceImplement implements BoardService{
         }
 
         return GetTop3BoardListResponseDto.success(boardListViewEntities);
+
+    }
+
+    // 검색 게시물 리스트
+    @Override
+    public ResponseEntity<? super GetSearchboardListResponseDto> getSearchBoardList(String searchWord, String preSearchWord) {
+
+        List<BoardListViewEntity> boardListViewEntities = new ArrayList<>();
+
+        try {
+            
+            // 처음 검색할때
+            boardListViewEntities = boardListViewRepository.findByTitleContainsOrContentContainsOrderByWriteDatetimeDesc(searchWord, searchWord);
+            
+            SearchLogEntity searchLogEntity = new SearchLogEntity(searchWord, preSearchWord, false);
+            searchLogRepository.save(searchLogEntity);
+            
+            boolean relation = preSearchWord != null;
+            if (relation) {
+                searchLogEntity = new SearchLogEntity(preSearchWord, searchWord, relation);
+                searchLogRepository.save(searchLogEntity);
+            }
+
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetSearchboardListResponseDto.success(boardListViewEntities);
 
     }
 
@@ -361,6 +395,5 @@ public class BoardServiceImplement implements BoardService{
         return DeleteBoardResponseDto.success();
 
     }
-
 
 }

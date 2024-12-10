@@ -21,6 +21,7 @@ import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
 import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
 import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
+import com.zeze.board_back.dto.response.board.GetSearchboardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
 import com.zeze.board_back.dto.response.board.IncreaseViewCountResponseDto;
 import com.zeze.board_back.dto.response.board.PatchBoardResponseDto;
@@ -87,6 +88,16 @@ public class BoardController {
     @GetMapping("/top-3")
     public ResponseEntity<? super GetTop3BoardListResponseDto> getTop3BoardList() {
         ResponseEntity<? super GetTop3BoardListResponseDto> response = boardService.getTop3BoardList();
+        return response;
+    }
+
+    // 검색 리스트
+    @GetMapping(value = {"/search-list/{searchWord}", "/search-list/{searchWord}/{preSearchWord}"})
+    public ResponseEntity<? super GetSearchboardListResponseDto> getSearchBoardList(
+        @PathVariable("searchWord") String searchWord,
+        @PathVariable(value = "preSearchWord", required = false) String preSearchWord
+    ) {
+        ResponseEntity<? super GetSearchboardListResponseDto> response = boardService.getSearchBoardList(searchWord, preSearchWord);
         return response;
     }
 

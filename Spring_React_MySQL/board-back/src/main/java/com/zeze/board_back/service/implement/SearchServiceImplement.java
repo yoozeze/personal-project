@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.zeze.board_back.dto.response.ResponseDto;
 import com.zeze.board_back.dto.response.search.GetPopularListResponseDto;
+import com.zeze.board_back.dto.response.search.GetRelationListResponseDto;
 import com.zeze.board_back.repository.SearchLogRepository;
 import com.zeze.board_back.repository.resultSet.GetPopularListResultSet;
+import com.zeze.board_back.repository.resultSet.GetRelationListResultSet;
 import com.zeze.board_back.service.SearchService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,6 +39,25 @@ public class SearchServiceImplement implements SearchService{
         }
 
         return GetPopularListResponseDto.success(resultSets);
+    }
+
+    // 연관 검색어 리스트
+    @Override
+    public ResponseEntity<? super GetRelationListResponseDto> getRelationList(String searchWord) {
+        
+        List<GetRelationListResultSet> resultSets = new ArrayList<>();
+
+        try {
+
+            resultSets = searchLogRepository.getRelationList(searchWord);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetRelationListResponseDto.success(resultSets);
+
     }
 
 }

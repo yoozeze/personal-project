@@ -3,6 +3,7 @@ import './style.css';
 import defaultProfileImage from 'assets/image/01_모코코콘1_16_백색모코코_물음표.png'
 import { BoardListItem } from 'types/interface';
 import { useNavigate } from 'react-router-dom';
+import { BOARD_DETAIL_PATH, BOARD_PATH } from 'constant';
 
 interface Props {
     top3ListItem: BoardListItem
@@ -11,20 +12,20 @@ interface Props {
 //          component: Top3 List Item 컴포넌트
 export default function Top3Item({ top3ListItem }: Props) {
 
-    //          properties
+    //          properties          //
     const { boardNumber, title, content, boardTitleImage } = top3ListItem;
     const { favoriteCount, commentCount, viewCount } = top3ListItem;
     const { writeDatetime, writeNickname, writeProfileImage } = top3ListItem;
 
-    //          function: 네비게이트 함수
-    // const navigate =useNavigate();
+    //          function: 네비게이트 함수          //
+    const navigate =useNavigate();
 
-    //          event handler: 게시물 아이템 클릭 이벤트 처리 함수
+    //          event handler: 게시물 아이템 클릭 이벤트 처리 함수          //
     const onClickHandler = () => {
-        // navigate(boardNumber);
+        navigate(BOARD_PATH() + '/' + BOARD_DETAIL_PATH(boardNumber));
     }
 
-    //          render: Top3 List Item 컴포넌트 렌더링
+    //          render: Top3 List Item 컴포넌트 렌더링          //
     return (
         <div className='top-3-list-item' style={{ backgroundImage: `url(${boardTitleImage})` }} onClick={onClickHandler}>
             <div className="top-3-list-item-main-box">
