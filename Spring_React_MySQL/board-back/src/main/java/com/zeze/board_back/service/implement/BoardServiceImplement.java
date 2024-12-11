@@ -19,8 +19,9 @@ import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
 import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
 import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
-import com.zeze.board_back.dto.response.board.GetSearchboardListResponseDto;
+import com.zeze.board_back.dto.response.board.GetSearchBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
+import com.zeze.board_back.dto.response.board.GetUserBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.IncreaseViewCountResponseDto;
 import com.zeze.board_back.dto.response.board.PatchBoardResponseDto;
 import com.zeze.board_back.dto.response.board.PostBoardResponseDto;
@@ -170,7 +171,7 @@ public class BoardServiceImplement implements BoardService{
 
     // 검색 게시물 리스트
     @Override
-    public ResponseEntity<? super GetSearchboardListResponseDto> getSearchBoardList(String searchWord, String preSearchWord) {
+    public ResponseEntity<? super GetSearchBoardListResponseDto> getSearchBoardList(String searchWord, String preSearchWord) {
 
         List<BoardListViewEntity> boardListViewEntities = new ArrayList<>();
 
@@ -194,8 +195,30 @@ public class BoardServiceImplement implements BoardService{
             return ResponseDto.databaseError();
         }
 
-        return GetSearchboardListResponseDto.success(boardListViewEntities);
+        return GetSearchBoardListResponseDto.success(boardListViewEntities);
 
+    }
+
+    // 특정 유저 게시물 리스트
+    @Override
+    public ResponseEntity<? super GetUserBoardListResponseDto> getUserBoardList(String email) {
+
+        List<BoardListViewEntity> boardListViewEntities = new ArrayList<>();
+
+        try {
+
+            //유저 존재 확인
+            boolean existedUser = userRepository.existsByEmail(email);
+            if (!existedUser) return PostCommentResponseDto.noExistUser();
+
+            boardListViewEntities = boardListViewRepository.findByWriterEmailOrderByWriteDatetimeDesc(email);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetUserBoardListResponseDto.success(boardListViewEntities);
     }
 
     // 게시물 작성
@@ -204,8 +227,9 @@ public class BoardServiceImplement implements BoardService{
         
         try {
 
-            boolean existedEmail = userRepository.existsByEmail(email);
-            if (!existedEmail) return PostBoardResponseDto.noExistUser();
+            //유저 존재 확인
+            boolean existedUser = userRepository.existsByEmail(email);
+            if (!existedUser) return PostBoardResponseDto.noExistUser();
             
             BoardEntity boardEntity = new BoardEntity(dto, email);
             boardRepository.save(boardEntity);

@@ -37,4 +37,14 @@ public class UserEntity {
         this.agreedPersonal = dto.getAgreedPersonal();
     }
 
+    // 닉네임 수정
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    // 프로필 이미지 수정
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
 }

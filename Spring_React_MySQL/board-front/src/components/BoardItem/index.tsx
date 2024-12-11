@@ -9,7 +9,7 @@ interface Props {
     boardListItem: BoardListItem
 }
 
-//          component: Board List Item 컴포넌트
+//          component: Board List Item 컴포넌트          //
 export default function BoardItem({ boardListItem }: Props) {
 
     //          properties

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zeze.board_back.dto.request.board.PatchBoardRequestDto;
@@ -21,8 +20,9 @@ import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
 import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
 import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
-import com.zeze.board_back.dto.response.board.GetSearchboardListResponseDto;
+import com.zeze.board_back.dto.response.board.GetSearchBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
+import com.zeze.board_back.dto.response.board.GetUserBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.IncreaseViewCountResponseDto;
 import com.zeze.board_back.dto.response.board.PatchBoardResponseDto;
 import com.zeze.board_back.dto.response.board.PostBoardResponseDto;
@@ -93,11 +93,20 @@ public class BoardController {
 
     // 검색 리스트
     @GetMapping(value = {"/search-list/{searchWord}", "/search-list/{searchWord}/{preSearchWord}"})
-    public ResponseEntity<? super GetSearchboardListResponseDto> getSearchBoardList(
+    public ResponseEntity<? super GetSearchBoardListResponseDto> getSearchBoardList(
         @PathVariable("searchWord") String searchWord,
         @PathVariable(value = "preSearchWord", required = false) String preSearchWord
     ) {
-        ResponseEntity<? super GetSearchboardListResponseDto> response = boardService.getSearchBoardList(searchWord, preSearchWord);
+        ResponseEntity<? super GetSearchBoardListResponseDto> response = boardService.getSearchBoardList(searchWord, preSearchWord);
+        return response;
+    }
+
+    // 특정 유저 게시물 리스트
+    @GetMapping("/user-board-list/{email}")
+    public ResponseEntity<? super GetUserBoardListResponseDto> getUserBoardList(
+        @PathVariable("email") String email
+    ) {
+        ResponseEntity<? super GetUserBoardListResponseDto> response = boardService.getUserBoardList(email);
         return response;
     }
 
