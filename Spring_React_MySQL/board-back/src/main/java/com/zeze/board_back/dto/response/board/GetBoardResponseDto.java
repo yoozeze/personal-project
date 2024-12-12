@@ -15,8 +15,7 @@ import com.zeze.board_back.repository.resultSet.GetBoardResultSet;
 import lombok.Getter;
 
 @Getter
-
-public class GetBoardRespnoseDto extends ResponseDto{
+public class GetBoardResponseDto extends ResponseDto{
     
     private int boardNumber;
     private String title;
@@ -27,7 +26,7 @@ public class GetBoardRespnoseDto extends ResponseDto{
     private String writerNickname;
     private String writerProfileImage;
 
-    private GetBoardRespnoseDto(GetBoardResultSet resultSet, List<ImageEntity> imageEntities) {
+    private GetBoardResponseDto(GetBoardResultSet resultSet, List<ImageEntity> imageEntities) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 
         List<String> boardImageList = new ArrayList<>();
@@ -46,8 +45,8 @@ public class GetBoardRespnoseDto extends ResponseDto{
         this.writerProfileImage = resultSet.getWriterProfileImage();
     }
 
-    public static ResponseEntity<GetBoardRespnoseDto> success(GetBoardResultSet resultSet, List<ImageEntity> imageEntities) {
-        GetBoardRespnoseDto result = new GetBoardRespnoseDto(resultSet, imageEntities);
+    public static ResponseEntity<GetBoardResponseDto> success(GetBoardResultSet resultSet, List<ImageEntity> imageEntities) {
+        GetBoardResponseDto result = new GetBoardResponseDto(resultSet, imageEntities);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

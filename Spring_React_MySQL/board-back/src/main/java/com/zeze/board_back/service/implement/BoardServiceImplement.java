@@ -15,9 +15,9 @@ import com.zeze.board_back.dto.request.board.PostBoardRequestDto;
 import com.zeze.board_back.dto.request.board.PostCommentRequestDto;
 import com.zeze.board_back.dto.response.ResponseDto;
 import com.zeze.board_back.dto.response.board.DeleteBoardResponseDto;
-import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
+import com.zeze.board_back.dto.response.board.GetBoardResponseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
-import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
+import com.zeze.board_back.dto.response.board.GetFavoriteListResponseDto;
 import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetSearchBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
@@ -49,7 +49,6 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-
 public class BoardServiceImplement implements BoardService{
 
     private final UserRepository userRepository;
@@ -62,7 +61,7 @@ public class BoardServiceImplement implements BoardService{
     
     // 게시물 조회
     @Override
-    public ResponseEntity<? super GetBoardRespnoseDto> getBoard(Integer boardNumber) {
+    public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber) {
 
         GetBoardResultSet resultSet = null;
         List<ImageEntity> imageEntities = new ArrayList<>();
@@ -70,7 +69,7 @@ public class BoardServiceImplement implements BoardService{
         try {
             
             resultSet = boardRepository.getBoard(boardNumber);
-            if (resultSet == null) return GetBoardRespnoseDto.noExistBoard();
+            if (resultSet == null) return GetBoardResponseDto.noExistBoard();
 
             imageEntities = imageRepository.findByBoardNumber(boardNumber);
 
@@ -79,19 +78,19 @@ public class BoardServiceImplement implements BoardService{
             return ResponseDto.databaseError();
         }
 
-        return GetBoardRespnoseDto.success(resultSet, imageEntities);
+        return GetBoardResponseDto.success(resultSet, imageEntities);
     }
 
     // 좋아요 리스트
     @Override
-    public ResponseEntity<? super GetFavoriteListRespnseDto> getFavoriteList(Integer boardNumber) {
+    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(Integer boardNumber) {
         
         List<GetFavoriteListResultSet> resultSets = new ArrayList<>();
 
         try {
 
             boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
-        if (!existedBoard) return GetFavoriteListRespnseDto.noExistBoard();
+        if (!existedBoard) return GetFavoriteListResponseDto.noExistBoard();
         
         resultSets = favoriteRepository.getFavoriteList(boardNumber);
 
@@ -100,7 +99,7 @@ public class BoardServiceImplement implements BoardService{
             return ResponseDto.databaseError();
         }
 
-        return GetFavoriteListRespnseDto.success(resultSets);
+        return GetFavoriteListResponseDto.success(resultSets);
 
     }
 
@@ -335,8 +334,8 @@ public class BoardServiceImplement implements BoardService{
             if (boardEntity == null) return PatchBoardResponseDto.noExistBoard();
 
             // 권한 확인
-            String wirterEmail = boardEntity.getWriterEmail();
-            boolean isWriter = wirterEmail.equals(email);
+            String writerEmail = boardEntity.getWriterEmail();
+            boolean isWriter = writerEmail.equals(email);
             if (!isWriter) return PatchBoardResponseDto.noPermission();
 
             // 수정 

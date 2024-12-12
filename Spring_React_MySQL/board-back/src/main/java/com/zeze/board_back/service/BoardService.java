@@ -6,9 +6,9 @@ import com.zeze.board_back.dto.request.board.PatchBoardRequestDto;
 import com.zeze.board_back.dto.request.board.PostBoardRequestDto;
 import com.zeze.board_back.dto.request.board.PostCommentRequestDto;
 import com.zeze.board_back.dto.response.board.DeleteBoardResponseDto;
-import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
+import com.zeze.board_back.dto.response.board.GetBoardResponseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
-import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
+import com.zeze.board_back.dto.response.board.GetFavoriteListResponseDto;
 import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetSearchBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
@@ -21,8 +21,8 @@ import com.zeze.board_back.dto.response.board.PutFavoriteResponseDto;
 
 public interface BoardService {
     
-    ResponseEntity<? super GetBoardRespnoseDto> getBoard(Integer boardNumber);
-    ResponseEntity<? super GetFavoriteListRespnseDto> getFavoriteList(Integer boardNumber);
+    ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber);
+    ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(Integer boardNumber);
     ResponseEntity<? super GetCommentListResponseDto> getCommentList(Integer boardNumber);
     ResponseEntity<? super GetLatestBoardListResponseDto> getLatestBoardList();
     ResponseEntity<? super GetTop3BoardListResponseDto> getTop3BoardList();

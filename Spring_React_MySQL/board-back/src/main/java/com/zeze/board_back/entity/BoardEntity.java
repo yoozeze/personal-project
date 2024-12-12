@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="board")
 @Table(name="board")
-
 public class BoardEntity {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

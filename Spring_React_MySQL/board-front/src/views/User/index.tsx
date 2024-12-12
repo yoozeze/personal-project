@@ -3,17 +3,16 @@ import './style.css';
 import defaultProfileImage from 'assets/image/01_모코코콘1_16_백색모코코_물음표.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BoardListItem } from 'types/interface';
-import { latestBoardListMock } from 'mocks';
 import BoardItem from 'components/BoardItem';
 import { BOARD_PATH, BOARD_WRITE_PATH, MAIN_PATH, USER_PATH } from 'constant';
 import { useLoginUserStore } from 'stores';
-import { fileUploadRequest, getUserBoardListRequest, getUserRequest, patchBoardRequest, patchNicknameRequest, patchProfileImageRequest } from 'apis';
+import { fileUploadRequest, getUserBoardListRequest, getUserRequest, patchNicknameRequest, patchProfileImageRequest } from 'apis';
 import { GetUserResponseDto, PatchNicknameResponseDto, PatchProfileImageResponseDto } from 'apis/response/user';
 import { ResponseDto } from 'apis/response';
 import { PatchNicknameRequestDto, PatchProfileImageRequestDto } from 'apis/request/user';
 import { useCookies } from 'react-cookie';
 import { usePagination } from 'hooks';
-import { GetUserBoardListResponseDton } from 'apis/response/board';
+import { GetUserBoardListResponseDto } from 'apis/response/board';
 import Pagination from 'components/Pagination';
 
 //          component: 유저 화면 컴포넌트          //
@@ -195,7 +194,7 @@ export default function User() {
         const [count, setCount] = useState<number>(2);
 
         //          function: get user board list response 처리 함수          //
-        const getUserResponse = (responseBody: GetUserBoardListResponseDton | ResponseDto | null) => {
+        const getUserResponse = (responseBody: GetUserBoardListResponseDto | ResponseDto | null) => {
             if (!responseBody) return;
             const { code } = responseBody;
             if (code === 'NU') {
@@ -206,7 +205,7 @@ export default function User() {
             if (code === 'DBE') alert('데이터 베이스 오류입니다.');
             if (code !== 'SU') return;
 
-            const { userBoardList } = responseBody as GetUserBoardListResponseDton;
+            const { userBoardList } = responseBody as GetUserBoardListResponseDto;
             setTotalList(userBoardList);
             setCount(userBoardList.length);
         };

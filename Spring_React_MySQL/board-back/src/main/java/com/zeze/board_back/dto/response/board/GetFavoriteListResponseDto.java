@@ -14,18 +14,17 @@ import com.zeze.board_back.repository.resultSet.GetFavoriteListResultSet;
 import lombok.Getter;
 
 @Getter
-
-public class GetFavoriteListRespnseDto extends ResponseDto {
+public class GetFavoriteListResponseDto extends ResponseDto {
 
     private List<FavoriteListItem> favoriteList;
 
-    private GetFavoriteListRespnseDto(List<GetFavoriteListResultSet> resultSets) {
+    private GetFavoriteListResponseDto(List<GetFavoriteListResultSet> resultSets) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         this.favoriteList = FavoriteListItem.copyList(resultSets);
     }
 
-    public static ResponseEntity<GetFavoriteListRespnseDto> success(List<GetFavoriteListResultSet> resultSets) {
-        GetFavoriteListRespnseDto result = new GetFavoriteListRespnseDto(resultSets);
+    public static ResponseEntity<GetFavoriteListResponseDto> success(List<GetFavoriteListResultSet> resultSets) {
+        GetFavoriteListResponseDto result = new GetFavoriteListResponseDto(resultSets);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

@@ -14,7 +14,6 @@ import com.zeze.board_back.repository.resultSet.GetRelationListResultSet;
 import lombok.Getter;
 
 @Getter
-
 public class GetRelationListResponseDto extends ResponseDto{
     
     private List<String> relativeWordList;

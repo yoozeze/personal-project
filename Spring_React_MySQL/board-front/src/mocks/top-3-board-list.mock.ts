@@ -13,8 +13,8 @@ const top3BoardListMock: BoardListItem[] = [
         "commentCount": 0,
         "viewCount": 0,
         "writeDatetime": "2024.010.30.  00:14:00",
-        "writeNickname": "안녕하세요나는모코코",
-        "writeProfileImage": profileImage,
+        "writerNickname": "안녕하세요나는모코코",
+        "writerProfileImage": profileImage,
     },
     {
         "boardNumber": 1,
@@ -25,8 +25,8 @@ const top3BoardListMock: BoardListItem[] = [
         "commentCount": 0,
         "viewCount": 0,
         "writeDatetime": "2024.010.30.  00:14:00",
-        "writeNickname": "안녕하세요나는제제",
-        "writeProfileImage": null,
+        "writerNickname": "안녕하세요나는제제",
+        "writerProfileImage": null,
     },
     {
         "boardNumber": 1,
@@ -37,8 +37,8 @@ const top3BoardListMock: BoardListItem[] = [
         "commentCount": 0,
         "viewCount": 0,
         "writeDatetime": "2024.010.30.  00:14:00",
-        "writeNickname": "안녕하세요나는제제",
-        "writeProfileImage": null,
+        "writerNickname": "안녕하세요나는제제",
+        "writerProfileImage": null,
     },
 ];
 

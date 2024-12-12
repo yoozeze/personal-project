@@ -10,7 +10,6 @@ import com.zeze.board_back.dto.response.ResponseDto;
 import lombok.Getter;
 
 @Getter
-
 public class PatchProfileImageResponseDto extends ResponseDto{
     
     private PatchProfileImageResponseDto() {

@@ -14,7 +14,6 @@ import com.zeze.board_back.repository.resultSet.GetPopularListResultSet;
 import lombok.Getter;
 
 @Getter
-
 public class GetPopularListResponseDto extends ResponseDto{
 
     private List<String> popularWordList;

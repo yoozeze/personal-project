@@ -9,13 +9,13 @@ interface Props {
     top3ListItem: BoardListItem
 }
 
-//          component: Top3 List Item 컴포넌트
+//          component: Top3 List Item 컴포넌트          //
 export default function Top3Item({ top3ListItem }: Props) {
 
     //          properties          //
     const { boardNumber, title, content, boardTitleImage } = top3ListItem;
     const { favoriteCount, commentCount, viewCount } = top3ListItem;
-    const { writeDatetime, writeNickname, writeProfileImage } = top3ListItem;
+    const { writeDatetime, writerNickname, writerProfileImage } = top3ListItem;
 
     //          function: 네비게이트 함수          //
     const navigate =useNavigate();
@@ -31,10 +31,10 @@ export default function Top3Item({ top3ListItem }: Props) {
             <div className="top-3-list-item-main-box">
                 <div className="top-3-list-item-top">
                     <div className="top-3-list-item-profile-box">
-                        <div className="top-3-list-item-profile-image" style={{ backgroundImage: `url(${writeProfileImage ? writeProfileImage : defaultProfileImage})` }}></div>
+                        <div className="top-3-list-item-profile-image" style={{ backgroundImage: `url(${writerProfileImage ? writerProfileImage : defaultProfileImage})` }}></div>
                     </div>
                     <div className="top-3-list-item-write-box">
-                        <div className="top-3-list-item-nickname">{writeNickname}</div>
+                        <div className="top-3-list-item-nickname">{writerNickname}</div>
                         <div className="top-3-list-item-write-date">{writeDatetime}</div>
                     </div>
                 </div>

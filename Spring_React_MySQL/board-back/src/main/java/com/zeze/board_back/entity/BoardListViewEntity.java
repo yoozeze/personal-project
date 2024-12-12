@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="board_list_view")
 @Table(name="board_list_view")
-
 public class BoardListViewEntity {
     
     @Id

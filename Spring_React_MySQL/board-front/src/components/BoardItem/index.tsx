@@ -12,10 +12,10 @@ interface Props {
 //          component: Board List Item 컴포넌트          //
 export default function BoardItem({ boardListItem }: Props) {
 
-    //          properties
+    //          properties          //
     const { boardNumber, title, content, boardTitleImage } = boardListItem;
     const { favoriteCount, commentCount, viewCount } = boardListItem;
-    const {writeDatetime, writeNickname, writeProfileImage } = boardListItem;
+    const { writeDatetime, writerNickname, writerProfileImage } = boardListItem;
 
     //          function: 네비게이트 함수          //
     const navigate = useNavigate();
@@ -31,10 +31,10 @@ export default function BoardItem({ boardListItem }: Props) {
             <div className='board-list-item-main-box'>
                 <div className='board-list-item-top'>
                     <div className='board-list-item-profile-box'>
-                        <div className="board-list-item-profile-image" style={{ backgroundImage: `url(${writeProfileImage ? writeProfileImage : defaultProfileImage})` }}></div>
+                        <div className="board-list-item-profile-image" style={{ backgroundImage: `url(${writerProfileImage ? writerProfileImage : defaultProfileImage})` }}></div>
                     </div>
                     <div className='board-list-item-write-box'>
-                        <div className='board-list-item-nickname'>{writeNickname}</div>
+                        <div className='board-list-item-nickname'>{writerNickname}</div>
                         <div className='board-list-item-write-date'>{writeDatetime}</div>
                     </div>
                 </div>

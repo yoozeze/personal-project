@@ -16,9 +16,9 @@ import com.zeze.board_back.dto.request.board.PatchBoardRequestDto;
 import com.zeze.board_back.dto.request.board.PostBoardRequestDto;
 import com.zeze.board_back.dto.request.board.PostCommentRequestDto;
 import com.zeze.board_back.dto.response.board.DeleteBoardResponseDto;
-import com.zeze.board_back.dto.response.board.GetBoardRespnoseDto;
+import com.zeze.board_back.dto.response.board.GetBoardResponseDto;
 import com.zeze.board_back.dto.response.board.GetCommentListResponseDto;
-import com.zeze.board_back.dto.response.board.GetFavoriteListRespnseDto;
+import com.zeze.board_back.dto.response.board.GetFavoriteListResponseDto;
 import com.zeze.board_back.dto.response.board.GetLatestBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetSearchBoardListResponseDto;
 import com.zeze.board_back.dto.response.board.GetTop3BoardListResponseDto;
@@ -43,19 +43,19 @@ public class BoardController {
 
     // 게시물 조회
     @GetMapping("/{boardNumber}")
-    public ResponseEntity<? super GetBoardRespnoseDto> getBoard(
+    public ResponseEntity<? super GetBoardResponseDto> getBoard(
         @PathVariable("boardNumber") Integer boardNumber
     ) {
-        ResponseEntity<? super GetBoardRespnoseDto> response = boardService.getBoard(boardNumber);
+        ResponseEntity<? super GetBoardResponseDto> response = boardService.getBoard(boardNumber);
         return response;
     }
 
     // 좋아요 리스트
     @GetMapping("/{boardNumber}/favorite-list")
-    public ResponseEntity<? super GetFavoriteListRespnseDto> getFavoriteList(
+    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(
         @PathVariable("boardNumber") Integer boardNumber
     ) {
-        ResponseEntity<? super GetFavoriteListRespnseDto> response = boardService.getFavoriteList(boardNumber);
+        ResponseEntity<? super GetFavoriteListResponseDto> response = boardService.getFavoriteList(boardNumber);
         return response;
     }
 

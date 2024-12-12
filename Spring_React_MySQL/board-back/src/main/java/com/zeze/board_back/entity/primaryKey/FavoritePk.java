@@ -12,7 +12,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class FavoritePk implements Serializable{
     @Column(name = "user_email")
     private String userEmail;

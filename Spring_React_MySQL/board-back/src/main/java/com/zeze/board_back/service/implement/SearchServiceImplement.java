@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-
 public class SearchServiceImplement implements SearchService{
 
     private final SearchLogRepository searchLogRepository;

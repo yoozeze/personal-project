@@ -14,7 +14,6 @@ import com.zeze.board_back.entity.BoardListViewEntity;
 import lombok.Getter;
 
 @Getter
-
 public class GetUserBoardListResponseDto extends ResponseDto{
     
     private List<BoardListItem> userBoardList;
