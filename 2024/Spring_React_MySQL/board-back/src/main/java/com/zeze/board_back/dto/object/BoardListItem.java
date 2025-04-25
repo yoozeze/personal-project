@@ -44,6 +44,7 @@ public class BoardListItem {
             BoardListItem boardListItem = new BoardListItem(boardListViewEntity);
             list.add(boardListItem);
         }
+        
         return list;
     }
 }
